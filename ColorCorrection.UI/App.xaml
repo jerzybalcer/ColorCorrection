@@ -1,7 +1,7 @@
-﻿<Application x:Class="ColorCorrection.App"
+﻿<Application x:Class="ColorCorrection.UI.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:ColorCorrection"
+             xmlns:local="clr-namespace:ColorCorrection.UI"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

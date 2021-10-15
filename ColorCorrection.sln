@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31105.61
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorCorrection", "ColorCorrection\ColorCorrection.csproj", "{0265DDB8-1657-4479-8342-93371BEFA07A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorCorrection.UI", "ColorCorrection.UI\ColorCorrection.UI.csproj", "{FCA07865-4489-4F8B-879B-15561281F55C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0265DDB8-1657-4479-8342-93371BEFA07A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0265DDB8-1657-4479-8342-93371BEFA07A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0265DDB8-1657-4479-8342-93371BEFA07A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0265DDB8-1657-4479-8342-93371BEFA07A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCA07865-4489-4F8B-879B-15561281F55C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCA07865-4489-4F8B-879B-15561281F55C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCA07865-4489-4F8B-879B-15561281F55C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCA07865-4489-4F8B-879B-15561281F55C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
