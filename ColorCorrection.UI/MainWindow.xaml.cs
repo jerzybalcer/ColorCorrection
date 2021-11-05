@@ -43,7 +43,7 @@ namespace ColorCorrection.UI
                 (float)RedSlider.Value, (float)GreenSlider.Value, (float)BlueSlider.Value, (bool)AsmBtn.IsChecked);
 
             //display execution time
-            Time.Text = "Correction time: " + executionTime.ElapsedMilliseconds + "ms | "+ executionTime.ElapsedTicks +" ticks";
+            Time.Text = "Correction time: " + executionTime.ElapsedMilliseconds + " ms | "+ executionTime.ElapsedTicks +" ticks";
 
             // display corrected image
             DisplayedImg.Source = imgToCorrect.ToBitmapSource();

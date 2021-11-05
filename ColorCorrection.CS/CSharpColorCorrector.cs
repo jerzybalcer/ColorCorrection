@@ -8,6 +8,7 @@
 
             for (int i = 2; i < pixels.Length; i += 3)
             {
+                // bug: when color parameter is 255 the new pixel value is not changed (divide by 0 -> infinity)
                 float newRed = 255.0f / (255.0f - red) * (float)pixels[i];
                 float newGreen = 255.0f / (255.0f - green) * (float)pixels[i - 1];
                 float newBlue = 255.0f / (255.0f - blue) * (float)pixels[i - 2];

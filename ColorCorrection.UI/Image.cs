@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
@@ -17,11 +18,15 @@ namespace ColorCorrection.UI
 
         public void Load(string path)
         {
-            _originalBitmap = new Bitmap(path); // load bitmap from file
-            ToPixelsByteArray();
+            // load image from file in a way it can be overwritten
+            // without using block the file would be locked until the disposal of the bitmap object
+            using (var memoryStream = new MemoryStream(File.ReadAllBytes(path)))
+                _originalBitmap = new Bitmap(memoryStream);
+
+            CopyPixelsToByteArray();
         }
 
-        private void ToPixelsByteArray()
+        private void CopyPixelsToByteArray()
         {
             // lock bitmap's bits  
             BitmapData bmpData =
@@ -43,6 +48,7 @@ namespace ColorCorrection.UI
             // unlock bits
             _originalBitmap.UnlockBits(bmpData);
 
+            // save extracted pixels
             _pixels = pixels;
         }
 
