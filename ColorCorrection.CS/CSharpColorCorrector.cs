@@ -2,7 +2,7 @@
 {
     public static class CSharpColorCorrector
     {
-        public static byte[] Correct(in byte[] pixels, float red, float green, float blue)
+        public static byte[] Correct(byte[] pixels, float red, float green, float blue)
         {
             byte[] newPixels = new byte[pixels.Length];
 

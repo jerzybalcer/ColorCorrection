@@ -57,7 +57,7 @@ namespace ColorCorrection.UI
 
         public Stopwatch CorrectColors(float red, float green, float blue, bool isAssemblyChosen)
         {
-            // convert loaded bitmap to byte array of all pixels
+            // prepare array for corrected image pixels
             byte[] correctedPixels = new byte[_pixels.Length];
 
             // setup a stopwatch for measuring execution time
