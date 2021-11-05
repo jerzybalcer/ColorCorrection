@@ -11,6 +11,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ColorCorrection.CS\ColorCorrection.CS.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="example.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>

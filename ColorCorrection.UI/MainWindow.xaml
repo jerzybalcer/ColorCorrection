@@ -9,13 +9,19 @@
     <Grid x:Name="MainContainer" Background="#2d2d2d">
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
-        <Image x:Name="Img" Source="example.jpg" Grid.Row="0" Margin="10"/>
 
-        <Grid x:Name="Menu" Grid.Row="1" Margin="10" Background="#474747">
+        <StackPanel Grid.Row="0" Background="DimGray">
+            <TextBlock x:Name="Time" Text="Correction time: not yet measured" Foreground="White" HorizontalAlignment="Center" 
+                       VerticalAlignment="Center" FontSize="16"/>
+        </StackPanel>
+        
+        <Image x:Name="DisplayedImg" Grid.Row="1" Margin="10"/>
+
+        <Grid x:Name="Menu" Grid.Row="2" Margin="10" Background="#474747">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="2*"/>
@@ -23,6 +29,8 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
@@ -31,7 +39,7 @@
                 VerticalAlignment="Center" Foreground="White" Text="Select File" FontWeight="Medium"/>
 
             <Button x:Name="BrowseBtn" Content="Browse" FontSize="18" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" 
-                VerticalAlignment="Center" Padding="10"/>
+                VerticalAlignment="Center" Padding="10" Click="BrowseBtn_Click"/>
 
             <TextBlock FontSize="18" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" 
                 VerticalAlignment="Center" Foreground="White" Text="Method" FontWeight="Medium"/>
@@ -40,34 +48,51 @@
                 <RadioButton x:Name="CSharpBtn" Content="C#" FontSize="18" Grid.Column="1" IsChecked="True" Foreground="White"/>
                 <RadioButton x:Name="AsmBtn" Content="Assembly" FontSize="18" Grid.Column="2" Foreground="White"/>
             </StackPanel>
-            
+
             <TextBlock FontSize="18" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" 
+                VerticalAlignment="Center" Foreground="White" Text="Threads" FontWeight="Medium"/>
+            <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="{Binding ElementName=ThreadsSlider, Path=Value}" Foreground="White" Width="20"/>
+                <Slider x:Name="ThreadsSlider" Margin="5,2,0,2" Width="150" Minimum="1" Maximum="64"
+                            TickFrequency="1" IsSnapToTickEnabled="True"/>
+            </StackPanel>
+
+            <TextBlock FontSize="18" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" 
                 VerticalAlignment="Center" Foreground="White" Text="RGB Channels" FontWeight="Medium"/>
 
-            <StackPanel Grid.Column="2" Grid.Row="1">
+            <StackPanel Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="{Binding ElementName=RedSlider, Path=Value}" Foreground="White" Width="20"/>
-                    <Slider x:Name="RedSlider" Margin="5,2,0,2" Background="Red" Width="200" Maximum="255"
+                    <Slider x:Name="RedSlider" Margin="5,2,0,2" Background="Red" Width="200" Minimum="0" Maximum="255"
                             TickFrequency="1" IsSnapToTickEnabled="True"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="{Binding ElementName=GreenSlider, Path=Value}" Foreground="White" Width="20"/>
-                    <Slider x:Name="GreenSlider" Margin="5,2,0,2" Background="Green" Width="200" Maximum="255" 
+                    <Slider x:Name="GreenSlider" Margin="5,2,0,2" Background="Green" Width="200" Minimum="0" Maximum="255" 
                             TickFrequency="1" IsSnapToTickEnabled="True"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="{Binding ElementName=BlueSlider, Path=Value}" Foreground="White" Width="20"/>
-                    <Slider x:Name="BlueSlider" Margin="5,2,0,2" Background="Blue" Width="200" Maximum="255"
+                    <Slider x:Name="BlueSlider" Margin="5,2,0,2" Background="Blue" Width="200" Minimum="0" Maximum="255"
                             TickFrequency="1" IsSnapToTickEnabled="True"/>
                 </StackPanel>
             </StackPanel>
+
+            <TextBlock FontSize="18" Grid.Column="4" Grid.Row="0" HorizontalAlignment="Center" 
+                VerticalAlignment="Center" Foreground="White" Text="Output" FontWeight="Medium"/>
             
-            <TextBlock FontSize="18" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" 
-                VerticalAlignment="Center" Foreground="White" Text="Color Correction" FontWeight="Medium"/>
-            <Button x:Name="RunBtn" Content="Run" FontSize="18" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" 
-                    VerticalAlignment="Center" Padding="10"/>
+            <StackPanel x:Name="FormatSelect" Grid.Column="4" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <RadioButton x:Name="Jpeg" Content="JPEG" FontSize="18" IsChecked="True" Foreground="White"/>
+                <RadioButton x:Name="Png" Content="PNG" FontSize="18" Foreground="White"/>
+                <RadioButton x:Name="Bmp" Content="BMP" FontSize="18" Foreground="White" IsChecked="True"/>
+            </StackPanel>
+
+            <TextBlock FontSize="18" Grid.Column="5" Grid.Row="0" HorizontalAlignment="Center" 
+                VerticalAlignment="Center" Foreground="White" Text="Correction" FontWeight="Medium"/>
+            <Button x:Name="RunBtn" Content="Run" FontSize="18" Grid.Column="5" Grid.Row="1" HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" Padding="10" Click="RunBtn_Click"/>
         </Grid>
     </Grid>
 </Window>
