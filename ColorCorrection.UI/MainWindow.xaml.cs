@@ -40,7 +40,7 @@ namespace ColorCorrection.UI
         {
             // correct the colors then display the new image
             Stopwatch executionTime = imgToCorrect.CorrectColors(
-                (float)RedSlider.Value, (float)GreenSlider.Value, (float)BlueSlider.Value, (bool)AsmBtn.IsChecked);
+                (float)RedSlider.Value, (float)GreenSlider.Value, (float)BlueSlider.Value, (bool)AsmBtn.IsChecked, (int)ThreadsSlider.Value);
 
             //display execution time
             Time.Text = "Correction time: " + executionTime.ElapsedMilliseconds + " ms | "+ executionTime.ElapsedTicks +" ticks";
