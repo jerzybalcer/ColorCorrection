@@ -38,6 +38,9 @@ namespace ColorCorrection.UI
 
         private void RunBtn_Click(object sender, RoutedEventArgs e)
         {
+            // stop if there's no image loaded
+            if (imgToCorrect.IsBitmapLoaded() == false) return;
+
             // correct the colors then display the new image
             Stopwatch executionTime = imgToCorrect.CorrectColors(
                 (float)RedSlider.Value, (float)GreenSlider.Value, (float)BlueSlider.Value, (bool)AsmBtn.IsChecked, (int)ThreadsSlider.Value);

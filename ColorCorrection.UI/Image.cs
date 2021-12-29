@@ -55,6 +55,18 @@ namespace ColorCorrection.UI
             _pixels = pixels;
         }
 
+        public bool IsBitmapLoaded()
+        {
+            if(_originalBitmap == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         public BitmapSource ToBitmapSource()
         {
             return Imaging.CreateBitmapSourceFromHBitmap(
