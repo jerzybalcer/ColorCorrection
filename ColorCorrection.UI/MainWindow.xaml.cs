@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -16,7 +17,14 @@ namespace ColorCorrection.UI
         {
             InitializeComponent();
             imgToCorrect = new Image();
+
+            // test asm
+            var wynikAsm = MyProc1(1, 4);
         }
+
+        // test asm
+        [DllImport(@"C:\Users\Jerzy\source\repos\ColorCorrection\x64\Debug\ColorCorrection.ASM.dll")]
+        static extern int MyProc1(int a, int b);
 
         private void BrowseBtn_Click(object sender, RoutedEventArgs e)
         {
