@@ -16,7 +16,7 @@ namespace ColorCorrection.UI
     public class Image
     {
         private Bitmap _originalBitmap;
-        private byte[] _pixels;
+        private byte[] _channels;
         IntPtr firstPixelPtr;
 
         public void Load(string path)
@@ -42,17 +42,17 @@ namespace ColorCorrection.UI
             firstPixelPtr = bmpData.Scan0;
 
             // create an array for storing all of the image bytes
-            int pixelsSize = bmpData.Stride * _originalBitmap.Height;
-            byte[] pixels = new byte[pixelsSize];
+            int channelsSize = bmpData.Stride * _originalBitmap.Height;
+            byte[] channels = new byte[channelsSize];
 
             // copy rgb values to byte array
-            System.Runtime.InteropServices.Marshal.Copy(firstPixelPtr, pixels, 0, pixelsSize);
+            System.Runtime.InteropServices.Marshal.Copy(firstPixelPtr, channels, 0, channelsSize);
 
             // unlock bits
             _originalBitmap.UnlockBits(bmpData);
 
             // save extracted pixels
-            _pixels = pixels;
+            _channels = channels;
         }
 
         public bool IsBitmapLoaded()
@@ -79,61 +79,60 @@ namespace ColorCorrection.UI
         public Stopwatch CorrectColors(float red, float green, float blue, bool isAssemblyChosen, int numThreads)
         {
             // prepare array for corrected image pixels
-            byte[] correctedPixels = new byte[_pixels.Length];
+            byte[] correctedChannels = new byte[_channels.Length];
+
+            // limit number of usable threads
+            ThreadPool.SetMaxThreads(numThreads, numThreads);
+            ThreadPool.SetMinThreads(numThreads, numThreads);
+
+            // prepare array for storing task for each pixel
+            var taskList = new List<Task<byte[]>>();
 
             // setup a stopwatch for measuring execution time
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            ThreadPool.SetMaxThreads(numThreads, numThreads);
-            ThreadPool.SetMinThreads(numThreads, numThreads);
-
-            var taskList = new List<Task<byte[]>>();
-
-            for (int i = 2; i < _pixels.Length; i += 3)
+            // go through all pixels
+            for (int i = 2; i < _channels.Length; i += 3)
             {
-                byte[] portion = new byte[]{ _pixels[i-2], _pixels[i-1], _pixels[i] };
+                // get one pixel
+                byte[] pixel = new byte[]{ _channels[i-2], _channels[i-1], _channels[i] };
 
                 Task<byte[]> task = null;
 
+                // run correction algorithm on pixel
                 if (isAssemblyChosen)
                 {
-                    task = Task.Run(() => RunAsmAlgorithm(portion, red, green, blue));
+                    task = Task.Run(() => Algorithms.RunAsmAlgorithm(pixel, red, green, blue));
                 }
                 else
                 {
-                    task = Task.Run(() => RunCSharpAlgorithm(portion, red, green, blue));
+                    task = Task.Run(() => Algorithms.RunCSharpAlgorithm(pixel, red, green, blue));
                 }
 
+                // store that pixel's task
                 taskList.Add(task);
             }
 
+            // wait for all tasks to finish
             Task.WaitAll(taskList.ToArray());
 
-            // copy result of all tasks to output array
-            for (int i = 2; i < _pixels.Length; i += 3)
-            {
-                var resultArray = taskList[(i - 2) / 3];
-                correctedPixels[i - 2] = resultArray.Result[0]; 
-                correctedPixels[i - 1] = resultArray.Result[1]; 
-                correctedPixels[i] = resultArray.Result[2]; 
-            }
-
+            // stop measuring time
             stopwatch.Stop();
 
+            // copy result of all tasks to output array
+            for (int i = 2; i < _channels.Length; i += 3)
+            {
+                var resultArray = taskList[(i - 2) / 3];
+                correctedChannels[i - 2] = resultArray.Result[0];
+                correctedChannels[i - 1] = resultArray.Result[1];
+                correctedChannels[i] = resultArray.Result[2]; 
+            }
+
             // copy corrected pixels back to the bitmap
-            System.Runtime.InteropServices.Marshal.Copy(correctedPixels, 0, firstPixelPtr, correctedPixels.Length);
+            System.Runtime.InteropServices.Marshal.Copy(correctedChannels, 0, firstPixelPtr, correctedChannels.Length);
 
             return stopwatch;
-        }
-
-        private byte[] RunCSharpAlgorithm(byte[] portion, float red, float green, float blue)
-        {
-            return CSharpColorCorrector.Correct(portion, red, green, blue);
-        }
-        private byte[] RunAsmAlgorithm(byte[] portion, float red, float green, float blue)
-        {
-            return new byte[1]; // to do
         }
 
         public void SaveToFile(string format)

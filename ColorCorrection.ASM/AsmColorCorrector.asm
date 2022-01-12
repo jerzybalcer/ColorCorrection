@@ -1,7 +1,11 @@
 .code
-MyProc1 proc
-add RCX, RDX
-mov RAX, RCX
+Correct proc
+
+;adding example
+;add RCX, RDX
+;mov RAX, RDX
+
+mov RAX, RCX	;return first parameter
 ret
-MyProc1 endp
-end
+Correct endp
+end

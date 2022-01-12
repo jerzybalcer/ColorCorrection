@@ -138,6 +138,7 @@
       <EnableUAC>false</EnableUAC>
       <ModuleDefinitionFile>AsmColorCorrector.def</ModuleDefinitionFile>
       <NoEntryPoint>true</NoEntryPoint>
+      <AssemblyDebug>true</AssemblyDebug>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

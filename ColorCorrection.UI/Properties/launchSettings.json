@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ColorCorrection.UI": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}
