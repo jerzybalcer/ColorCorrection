@@ -20,11 +20,11 @@ namespace ColorCorrection.UI
 
             //outputAddress = Correct(inputAddress);
 
-            IntPtr outputAddress = Correct(inputAddress);
+            //IntPtr outputAddress = Correct(inputAddress);
 
             byte[] outputArray = new byte[portion.Length];
 
-            Marshal.Copy(outputAddress, outputArray, 0, portion.Length);
+            //Marshal.Copy(outputAddress, outputArray, 0, portion.Length);
 
             Marshal.FreeHGlobal(inputAddress);
             //Marshal.FreeHGlobal(outputAddress);
@@ -32,8 +32,8 @@ namespace ColorCorrection.UI
             return outputArray;
         }
 
-        [DllImport(@"C:\Users\Jerzy\source\repos\ColorCorrection\x64\Debug\ColorCorrection.ASM.dll")]
+        //[DllImport(@"C:\Users\Jerzy\source\repos\ColorCorrection\x64\Debug\ColorCorrection.ASM.dll")]
         //private static extern IntPtr Correct(IntPtr inputArrayAddress);
-        private static extern IntPtr Correct(IntPtr inputArrayAddress);
+        //private static extern IntPtr Correct(IntPtr inputArrayAddress);
     }
 }
