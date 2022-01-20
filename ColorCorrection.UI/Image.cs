@@ -96,7 +96,7 @@ namespace ColorCorrection.UI
             for (int i = 2; i < _channels.Length; i += 3)
             {
                 // get one pixel
-                byte[] pixel = new byte[]{ _channels[i-2], _channels[i-1], _channels[i], 1, 1, 1, 1, 1 };
+                byte[] pixel = new byte[]{ _channels[i-2], _channels[i-1], _channels[i], 0 };
 
                 Task<byte[]> task = null;
 

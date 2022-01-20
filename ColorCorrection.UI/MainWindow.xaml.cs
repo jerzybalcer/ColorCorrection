@@ -19,13 +19,10 @@ namespace ColorCorrection.UI
             imgToCorrect = new Image();
 
             // test asm
-            //var wynikAsm = Algorithms.RunAsmAlgorithm(new byte[]{1,2,3,4,5,6,7,8}, 99, 130, 11);
+            var wynikCs = Algorithms.RunCSharpAlgorithm(new byte[] { 1, 2, 3, 5 }, 1.5f, 2.0f, 5.0f);
+            var wynikAsm = Algorithms.RunAsmAlgorithm(new byte[]{255,150,200,5}, 1.5f, 2.0f, 5.0f);
             //var wynikAsm = Correct(1, 4);
         }
-
-        //// test asm
-        //[DllImport(@"C:\Users\Jerzy\source\repos\ColorCorrection\x64\Debug\ColorCorrection.ASM.dll")]
-        //static extern int Correct(int a, int b);
 
         private void BrowseBtn_Click(object sender, RoutedEventArgs e)
         {

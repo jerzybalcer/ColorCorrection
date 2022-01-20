@@ -18,7 +18,7 @@ namespace ColorCorrection.UI
 
             IntPtr outputAddress = Marshal.AllocHGlobal(portion.Length);
 
-            Correct(inputAddress, outputAddress, (int)red, (int)green, (int)blue);
+            Correct(inputAddress, outputAddress, red, green, blue);
 
             byte[] outputArray = new byte[portion.Length];
 
@@ -30,8 +30,8 @@ namespace ColorCorrection.UI
             return outputArray;
         }
 
-        //[DllImport(@"C:\Users\Jerzy\source\repos\ColorCorrection\x64\Debug\ColorCorrection.ASM.dll")]
-        [DllImport(@"C:\Users\jurek\Source\Repos\ColorCorrection\x64\Debug\ColorCorrection.ASM.dll")]
-        private static extern void Correct(IntPtr inputArrayAddress, IntPtr outputArrayAddress, int red, int green, int blue);
+        [DllImport(@"C:\Users\Jerzy\source\repos\ColorCorrection\x64\Debug\ColorCorrection.ASM.dll")]
+        //[DllImport(@"C:\Users\jurek\Source\Repos\ColorCorrection\x64\Debug\ColorCorrection.ASM.dll")]
+        private static extern void Correct(IntPtr inputArrayAddress, IntPtr outputArrayAddress, float red, float green, float blue);
     }
 }

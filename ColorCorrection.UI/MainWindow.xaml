@@ -62,21 +62,21 @@
 
             <StackPanel Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding ElementName=RedSlider, Path=Value}" Foreground="White" Width="20"/>
-                    <Slider x:Name="RedSlider" Margin="5,2,0,2" Background="Red" Width="200" Minimum="0" Maximum="255"
-                            TickFrequency="1" IsSnapToTickEnabled="True"/>
+                    <TextBlock Text="{Binding ElementName=RedSlider, Path=Value}" Foreground="White" Width="20" Padding="5,0,5,0"/>
+                    <Slider x:Name="RedSlider" Margin="5,2,0,2" Background="Red" Width="200" Minimum="1" Maximum="5"
+                            TickFrequency="0.1" IsSnapToTickEnabled="True"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding ElementName=GreenSlider, Path=Value}" Foreground="White" Width="20"/>
-                    <Slider x:Name="GreenSlider" Margin="5,2,0,2" Background="Green" Width="200" Minimum="0" Maximum="255" 
-                            TickFrequency="1" IsSnapToTickEnabled="True"/>
+                    <TextBlock Text="{Binding ElementName=GreenSlider, Path=Value}" Foreground="White" Width="20" Padding="5,0,5,0"/>
+                    <Slider x:Name="GreenSlider" Margin="5,2,0,2" Background="Green" Width="200" Minimum="1" Maximum="5" 
+                            TickFrequency="0.1" IsSnapToTickEnabled="True"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding ElementName=BlueSlider, Path=Value}" Foreground="White" Width="20"/>
-                    <Slider x:Name="BlueSlider" Margin="5,2,0,2" Background="Blue" Width="200" Minimum="0" Maximum="255"
-                            TickFrequency="1" IsSnapToTickEnabled="True"/>
+                    <TextBlock Text="{Binding ElementName=BlueSlider, Path=Value}" Foreground="White" Width="20" Padding="5,0,5,0"/>
+                    <Slider x:Name="BlueSlider" Margin="5,2,0,2" Background="Blue" Width="200" Minimum="1" Maximum="5"
+                            TickFrequency="0.1" IsSnapToTickEnabled="True"/>
                 </StackPanel>
             </StackPanel>
 
