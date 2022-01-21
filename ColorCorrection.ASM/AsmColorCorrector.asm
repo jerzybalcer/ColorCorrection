@@ -8,14 +8,14 @@
 Correct proc
 
 ; SETUP FILTER MASK [BLUE, GREEN, RED, BLUE]
-MOV EAX, DWORD PTR [RSP+40] ;blue parameter
+MOVD EAX, XMM3 ;blue parameter
 PINSRD XMM4, EAX, 0
 PINSRD XMM4, EAX, 3 ;blue is repeated at the end because input array contains BGRB values
 
-MOVD EAX, XMM3 ;green parameter
+MOVD EAX, XMM2 ;green parameter
 PINSRD XMM4, EAX, 1
 
-MOVD EAX, XMM2 ;red parameter
+MOVD EAX, XMM1 ;red parameter
 PINSRD XMM4, EAX, 2
 
 ; LOAD RGB VALUES
@@ -47,7 +47,7 @@ PACKUSWB XMM2, XMM2
 
 ; RETURN CORRECTED RGB VALUES ;
 MOVD RSI, XMM2 ;move RGB Values to rsi
-MOV [RDX], RSI ;move RGB Values to output array address
+MOV [RCX], RSI ;move RGB Values to output array address
 
 ret
 Correct endp

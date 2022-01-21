@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.32014.148
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColorCorrection.UI", "ColorCorrection.UI\ColorCorrection.UI.csproj", "{FCA07865-4489-4F8B-879B-15561281F55C}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -28,10 +28,10 @@ Global
 		{FCA07865-4489-4F8B-879B-15561281F55C}.Debug|x64.Build.0 = Debug|x64
 		{FCA07865-4489-4F8B-879B-15561281F55C}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{FCA07865-4489-4F8B-879B-15561281F55C}.Debug|x86.Build.0 = Debug|Any CPU
-		{FCA07865-4489-4F8B-879B-15561281F55C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FCA07865-4489-4F8B-879B-15561281F55C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FCA07865-4489-4F8B-879B-15561281F55C}.Release|x64.ActiveCfg = Release|Any CPU
-		{FCA07865-4489-4F8B-879B-15561281F55C}.Release|x64.Build.0 = Release|Any CPU
+		{FCA07865-4489-4F8B-879B-15561281F55C}.Release|Any CPU.ActiveCfg = Release|x64
+		{FCA07865-4489-4F8B-879B-15561281F55C}.Release|Any CPU.Build.0 = Release|x64
+		{FCA07865-4489-4F8B-879B-15561281F55C}.Release|x64.ActiveCfg = Release|x64
+		{FCA07865-4489-4F8B-879B-15561281F55C}.Release|x64.Build.0 = Release|x64
 		{FCA07865-4489-4F8B-879B-15561281F55C}.Release|x86.ActiveCfg = Release|Any CPU
 		{FCA07865-4489-4F8B-879B-15561281F55C}.Release|x86.Build.0 = Release|Any CPU
 		{CCB845D0-BDC5-46D6-9D1B-6D6D5251CEFD}.Debug|Any CPU.ActiveCfg = Debug|x64
@@ -40,10 +40,10 @@ Global
 		{CCB845D0-BDC5-46D6-9D1B-6D6D5251CEFD}.Debug|x64.Build.0 = Debug|x64
 		{CCB845D0-BDC5-46D6-9D1B-6D6D5251CEFD}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{CCB845D0-BDC5-46D6-9D1B-6D6D5251CEFD}.Debug|x86.Build.0 = Debug|Any CPU
-		{CCB845D0-BDC5-46D6-9D1B-6D6D5251CEFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CCB845D0-BDC5-46D6-9D1B-6D6D5251CEFD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CCB845D0-BDC5-46D6-9D1B-6D6D5251CEFD}.Release|x64.ActiveCfg = Release|Any CPU
-		{CCB845D0-BDC5-46D6-9D1B-6D6D5251CEFD}.Release|x64.Build.0 = Release|Any CPU
+		{CCB845D0-BDC5-46D6-9D1B-6D6D5251CEFD}.Release|Any CPU.ActiveCfg = Release|x64
+		{CCB845D0-BDC5-46D6-9D1B-6D6D5251CEFD}.Release|Any CPU.Build.0 = Release|x64
+		{CCB845D0-BDC5-46D6-9D1B-6D6D5251CEFD}.Release|x64.ActiveCfg = Release|x64
+		{CCB845D0-BDC5-46D6-9D1B-6D6D5251CEFD}.Release|x64.Build.0 = Release|x64
 		{CCB845D0-BDC5-46D6-9D1B-6D6D5251CEFD}.Release|x86.ActiveCfg = Release|Any CPU
 		{CCB845D0-BDC5-46D6-9D1B-6D6D5251CEFD}.Release|x86.Build.0 = Release|Any CPU
 		{11B2AEC8-75AF-40AA-A2BC-89207C05036C}.Debug|Any CPU.ActiveCfg = Debug|x64

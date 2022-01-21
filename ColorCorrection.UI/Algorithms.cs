@@ -1,5 +1,4 @@
 ﻿using ColorCorrection.CS;
-using System;
 using System.Runtime.InteropServices;
 
 namespace ColorCorrection.UI
@@ -12,26 +11,14 @@ namespace ColorCorrection.UI
         }
         public static byte[] RunAsmAlgorithm(byte[] portion, float red, float green, float blue)
         {
-            IntPtr inputAddress = Marshal.AllocHGlobal(portion.Length);
-            
-            Marshal.Copy(portion, 0, inputAddress, portion.Length);
+            Correct(portion, red, green, blue);
 
-            IntPtr outputAddress = Marshal.AllocHGlobal(portion.Length);
-
-            Correct(inputAddress, outputAddress, red, green, blue);
-
-            byte[] outputArray = new byte[portion.Length];
-
-            Marshal.Copy(outputAddress, outputArray, 0, portion.Length);
-
-            Marshal.FreeHGlobal(inputAddress);
-            Marshal.FreeHGlobal(outputAddress);
-
-            return outputArray;
+            return portion;
         }
 
-        [DllImport(@"C:\Users\Jerzy\source\repos\ColorCorrection\x64\Debug\ColorCorrection.ASM.dll")]
+        //[DllImport(@"C:\Users\Jerzy\source\repos\ColorCorrection\x64\Debug\ColorCorrection.ASM.dll")]
+        [DllImport(@"C:\Users\Jerzy\source\repos\ColorCorrection\x64\Release\ColorCorrection.ASM.dll")]
         //[DllImport(@"C:\Users\jurek\Source\Repos\ColorCorrection\x64\Debug\ColorCorrection.ASM.dll")]
-        private static extern void Correct(IntPtr inputArrayAddress, IntPtr outputArrayAddress, float red, float green, float blue);
+        private static extern void Correct(byte[] inputArray, float red, float green, float blue);
     }
 }
