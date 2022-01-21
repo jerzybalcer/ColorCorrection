@@ -11,7 +11,7 @@ namespace ColorCorrection.UI
         }
         public static byte[] RunAsmAlgorithm(byte[] portion, float red, float green, float blue)
         {
-            Correct(portion, red, green, blue);
+            Correct(portion, new float[] { blue, green, red, blue });
 
             return portion;
         }
@@ -19,6 +19,7 @@ namespace ColorCorrection.UI
         //[DllImport(@"C:\Users\Jerzy\source\repos\ColorCorrection\x64\Debug\ColorCorrection.ASM.dll")]
         [DllImport(@"C:\Users\Jerzy\source\repos\ColorCorrection\x64\Release\ColorCorrection.ASM.dll")]
         //[DllImport(@"C:\Users\jurek\Source\Repos\ColorCorrection\x64\Debug\ColorCorrection.ASM.dll")]
-        private static extern void Correct(byte[] inputArray, float red, float green, float blue);
+        //private static extern void Correct(byte[] inputArray, float red, float green, float blue); // 3 params mask method
+        private static extern void Correct(byte[] inputArray, float[] mask); // mask array method
     }
 }

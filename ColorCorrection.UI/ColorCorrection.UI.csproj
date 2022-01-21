@@ -28,10 +28,4 @@
     <ProjectReference Include="..\ColorCorrection.CS\ColorCorrection.CS.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Resource Include="example.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-
 </Project>

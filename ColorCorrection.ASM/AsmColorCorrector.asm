@@ -1,24 +1,29 @@
-; JÊZYKI ASEMBLEROWE - PROJEKT
+; JEZYKI ASEMBLEROWE - PROJEKT
 ; Data: 20.01.2022, wersja: 1.0
 ; Autor: Jerzy Balcer, Informatyka Katowice, rok 3 sem. 5, gr. 1
-; Temat: Korekcja koloroóww bitmapy przez balans kana³ów RGB
-; Opis: Algorytm mno¿y oryginalne wartoœci RGB przez wspó³czynnik bêd¹cy procentem oryginalnej wartoœci zmieniaj¹c jednoczeœnie kolor piksela
+; Temat: Korekcja kolorow bitmapy przez balans kanalow RGB
+; Opis: Algorytm mnozy oryginalne wartocci RGB przez wspolczynnik bedacy procentem oryginalnej wartosci zmieniajac jednoczesnie kolor piksela
 
 .code
 Correct proc
 
-; SETUP FILTER MASK [BLUE, GREEN, RED, BLUE]
-MOVD EAX, XMM3 ;blue parameter
-PINSRD XMM4, EAX, 0
-PINSRD XMM4, EAX, 3 ;blue is repeated at the end because input array contains BGRB values
+;;;;;;;;;;;;;;;;;;;;;;;; 3 PARAMS MASK METHOD - DISABLED BY DEFAULT
+; SETUP FILTER MASK [BLUE, GREEN, RED, BLUE] 
+;MOVD EAX, XMM3 ;blue parameter
+;PINSRD XMM4, EAX, 0
+;PINSRD XMM4, EAX, 3 ;blue is repeated at the end because input array contains BGRB values
 
-MOVD EAX, XMM2 ;green parameter
-PINSRD XMM4, EAX, 1
+;MOVD EAX, XMM2 ;green parameter
+;PINSRD XMM4, EAX, 1
 
-MOVD EAX, XMM1 ;red parameter
-PINSRD XMM4, EAX, 2
+;MOVD EAX, XMM1 ;red parameter
+;PINSRD XMM4, EAX, 2
+;;;;;;;;;;;;;;;;;;;;;;;;
 
-; LOAD RGB VALUES
+; LOAD MASK TO XMM REGISTER (MASK ARRAY METHOD)
+MOVUPS XMM4, XMMWORD PTR [RDX]
+
+; LOAD RGB VALUES TO XMM REGISTER
 MOVD XMM2, DWORD PTR [RCX] ;move 4 RGB bytes to xmm2
 
 ; CONVERT 8 BIT INT VALUES TO 16 BIT
@@ -36,17 +41,11 @@ CVTPS2DQ XMM1, XMM4
 ; CONVERT 32 BIT INTS TO 16 BIT INTS
 PACKUSDW XMM1, XMM1
 
-; PREPARE/CLEAR XMM REGISTER FOR STORING RESULT
-XORPS XMM2, XMM2
-
-; MOVE RESULT TO CLEAN XMM REGISTER (IN THE ORIGINAL VALUES WERE DUPLICATED IN EACH QUADWORD)
-MOVHLPS XMM2, XMM1
-
 ; CONVERT 16 BIT INTS TO 8 BIT INTS IN ORDER TO STORE IN A BYTE ARRAY
-PACKUSWB XMM2, XMM2
+PACKUSWB XMM1, XMM1
 
 ; RETURN CORRECTED RGB VALUES ;
-MOVD RSI, XMM2 ;move RGB Values to rsi
+MOVD RSI, XMM1 ;move RGB Values to rsi
 MOV [RCX], RSI ;move RGB Values to output array address
 
 ret
