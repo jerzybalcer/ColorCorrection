@@ -5,9 +5,6 @@ using System.Windows.Controls;
 
 namespace ColorCorrection.UI
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private Image imgToCorrect;
@@ -16,11 +13,6 @@ namespace ColorCorrection.UI
         {
             InitializeComponent();
             imgToCorrect = new Image();
-
-            // test asm
-            //var wynikCs = Algorithms.RunCSharpAlgorithm(new byte[] { 1, 2, 3, 5 }, 1.5f, 2.0f, 5.0f);
-            //var wynikAsm = Algorithms.RunAsmAlgorithm(new byte[]{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15}, 1.5f, 2.0f, 5.0f);
-            //var wynikAsm = Correct(1, 4);
         }
 
         private void BrowseBtn_Click(object sender, RoutedEventArgs e)

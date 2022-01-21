@@ -103,7 +103,7 @@ namespace ColorCorrection.UI
 
                 Task<byte[]> task1 = null, task2 = null, task3 = null;
 
-                // run correction algorithm on pixel
+                // run correction algorithm on portions
                 if (isAssemblyChosen)
                 {
                     task1 = Task.Run(() => Algorithms.RunAsmAlgorithm(portion1, red, green, blue));
@@ -117,7 +117,7 @@ namespace ColorCorrection.UI
                     task3 = Task.Run(() => Algorithms.RunCSharpAlgorithm(portion3, green, blue, red));
                 }
 
-                // store that pixel's task
+                // store portion's task
                 taskList.Add(task1);
                 taskList.Add(task2);
                 taskList.Add(task3);
