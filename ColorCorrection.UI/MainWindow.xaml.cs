@@ -19,8 +19,8 @@ namespace ColorCorrection.UI
             imgToCorrect = new Image();
 
             // test asm
-            var wynikCs = Algorithms.RunCSharpAlgorithm(new byte[] { 1, 2, 3, 5 }, 1.5f, 2.0f, 5.0f);
-            var wynikAsm = Algorithms.RunAsmAlgorithm(new byte[]{255,150,200,5}, 1.5f, 2.0f, 5.0f);
+            //var wynikCs = Algorithms.RunCSharpAlgorithm(new byte[] { 1, 2, 3, 5 }, 1.5f, 2.0f, 5.0f);
+            //var wynikAsm = Algorithms.RunAsmAlgorithm(new byte[]{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15}, 1.5f, 2.0f, 5.0f);
             //var wynikAsm = Correct(1, 4);
         }
 

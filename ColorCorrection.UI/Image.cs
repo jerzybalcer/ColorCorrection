@@ -57,7 +57,7 @@ namespace ColorCorrection.UI
 
         public bool IsBitmapLoaded()
         {
-            if(_originalBitmap == null)
+            if (_originalBitmap == null)
             {
                 return false;
             }
@@ -93,25 +93,34 @@ namespace ColorCorrection.UI
             stopwatch.Start();
 
             // go through all pixels
-            for (int i = 2; i < _channels.Length; i += 3)
+            for (int i = 11; i < _channels.Length; i += 12)
             {
-                // get one pixel
-                byte[] pixel = new byte[]{ _channels[i-2], _channels[i-1], _channels[i], 0 };
+                byte[] portion1, portion2, portion3;
 
-                Task<byte[]> task = null;
+                portion1 = new byte[] { _channels[i - 11], _channels[i - 10], _channels[i - 9], _channels[i - 8] }; // BGRB
+                portion2 = new byte[] { _channels[i - 7], _channels[i - 6], _channels[i - 5], _channels[i - 4] }; // GRBG
+                portion3 = new byte[] { _channels[i - 3], _channels[i - 2], _channels[i - 1], _channels[i] }; // RBGR
+
+                Task<byte[]> task1 = null, task2 = null, task3 = null;
 
                 // run correction algorithm on pixel
                 if (isAssemblyChosen)
                 {
-                    task = Task.Run(() => Algorithms.RunAsmAlgorithm(pixel, red, green, blue));
+                    task1 = Task.Run(() => Algorithms.RunAsmAlgorithm(portion1, red, green, blue));
+                    task2 = Task.Run(() => Algorithms.RunAsmAlgorithm(portion2, blue, red, green));
+                    task3 = Task.Run(() => Algorithms.RunAsmAlgorithm(portion3, green, blue, red));
                 }
                 else
                 {
-                    task = Task.Run(() => Algorithms.RunCSharpAlgorithm(pixel, red, green, blue));
+                    task1 = Task.Run(() => Algorithms.RunCSharpAlgorithm(portion1, red, green, blue));
+                    task2 = Task.Run(() => Algorithms.RunCSharpAlgorithm(portion2, blue, red, green));
+                    task3 = Task.Run(() => Algorithms.RunCSharpAlgorithm(portion3, green, blue, red));
                 }
 
                 // store that pixel's task
-                taskList.Add(task);
+                taskList.Add(task1);
+                taskList.Add(task2);
+                taskList.Add(task3);
             }
 
             // wait for all tasks to finish
@@ -121,12 +130,14 @@ namespace ColorCorrection.UI
             stopwatch.Stop();
 
             // copy result of all tasks to output array
-            for (int i = 2; i < _channels.Length; i += 3)
+            for (int i = 3; i < _channels.Length; i += 4)
             {
-                var resultArray = taskList[(i - 2) / 3];
-                correctedChannels[i - 2] = resultArray.Result[0];
-                correctedChannels[i - 1] = resultArray.Result[1];
-                correctedChannels[i] = resultArray.Result[2]; 
+                var resultArray = taskList[(i - 3) / 4];
+
+                for (int j = 0; j < resultArray.Result.Length; j++)
+                {
+                    correctedChannels[i - j] = resultArray.Result[3 - j];
+                }
             }
 
             // copy corrected pixels back to the bitmap
