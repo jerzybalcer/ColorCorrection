@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using System;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,6 +14,7 @@ namespace ColorCorrection.UI
         {
             InitializeComponent();
             imgToCorrect = new Image();
+            ThreadsSlider.Value = Environment.ProcessorCount;
         }
 
         private void BrowseBtn_Click(object sender, RoutedEventArgs e)
