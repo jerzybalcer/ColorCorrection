@@ -1,4 +1,10 @@
-﻿using Microsoft.Win32;
+﻿// JEZYKI ASEMBLEROWE - PROJEKT
+// Data: 20.01.2022, wersja: 1.0
+// Autor: Jerzy Balcer, Informatyka Katowice, rok 3 sem. 5, gr. 1
+// Temat: Korekcja kolorow bitmapy przez balans kanalow RGB
+// Opis: Algorytm mnozy oryginalne wartoci RGB przez wspolczynnik bedacy procentem oryginalnej wartosci zmieniajac jednoczesnie kolor piksela
+
+using Microsoft.Win32;
 using System;
 using System.Diagnostics;
 using System.Windows;
@@ -8,13 +14,13 @@ namespace ColorCorrection.UI
 {
     public partial class MainWindow : Window
     {
-        private Image imgToCorrect;
+        private Image imgToCorrect; // stores image loaded by user
 
         public MainWindow()
         {
             InitializeComponent();
             imgToCorrect = new Image();
-            ThreadsSlider.Value = Environment.ProcessorCount;
+            ThreadsSlider.Value = Environment.ProcessorCount; // set value to the number of processors on current computer
         }
 
         private void BrowseBtn_Click(object sender, RoutedEventArgs e)
@@ -55,7 +61,7 @@ namespace ColorCorrection.UI
             {
                 if ((bool)btn.IsChecked)
                 {
-                    imgToCorrect.SaveToFile(btn.Name);
+                    imgToCorrect.SaveToFile(btn.Name); // save corrected image to output file
                     break;
                 }
             }

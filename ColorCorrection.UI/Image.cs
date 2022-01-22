@@ -1,4 +1,9 @@
-﻿using ColorCorrection.CS;
+﻿// JEZYKI ASEMBLEROWE - PROJEKT
+// Data: 20.01.2022, wersja: 1.0
+// Autor: Jerzy Balcer, Informatyka Katowice, rok 3 sem. 5, gr. 1
+// Temat: Korekcja kolorow bitmapy przez balans kanalow RGB
+// Opis: Algorytm mnozy oryginalne wartoci RGB przez wspolczynnik bedacy procentem oryginalnej wartosci zmieniajac jednoczesnie kolor piksela
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -67,7 +72,7 @@ namespace ColorCorrection.UI
             }
         }
 
-        public BitmapSource ToBitmapSource()
+        public BitmapSource ToBitmapSource() // convert bitmap to format that can be displayed in wpf interface
         {
             return Imaging.CreateBitmapSourceFromHBitmap(
                            _originalBitmap.GetHbitmap(),
@@ -78,14 +83,14 @@ namespace ColorCorrection.UI
 
         public Stopwatch CorrectColors(float red, float green, float blue, bool isAssemblyChosen, int numThreads)
         {
-            // prepare array for corrected image pixels
+            // prepare array for corrected image color values
             byte[] correctedChannels = new byte[_channels.Length];
 
             // limit number of usable threads
             ThreadPool.SetMaxThreads(numThreads, numThreads);
             ThreadPool.SetMinThreads(numThreads, numThreads);
 
-            // prepare array for storing task for each pixel
+            // prepare array for storing task for each 4 values
             var taskList = new List<Task<byte[]>>();
 
             // setup a stopwatch for measuring execution time

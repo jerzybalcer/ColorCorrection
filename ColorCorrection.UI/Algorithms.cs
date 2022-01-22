@@ -1,4 +1,10 @@
-﻿using ColorCorrection.CS;
+﻿// JEZYKI ASEMBLEROWE - PROJEKT
+// Data: 20.01.2022, wersja: 1.0
+// Autor: Jerzy Balcer, Informatyka Katowice, rok 3 sem. 5, gr. 1
+// Temat: Korekcja kolorow bitmapy przez balans kanalow RGB
+// Opis: Algorytm mnozy oryginalne wartoci RGB przez wspolczynnik bedacy procentem oryginalnej wartosci zmieniajac jednoczesnie kolor piksela
+
+using ColorCorrection.CS;
 using System.Runtime.InteropServices;
 
 namespace ColorCorrection.UI
