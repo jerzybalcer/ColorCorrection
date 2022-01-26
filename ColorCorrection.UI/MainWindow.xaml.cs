@@ -7,6 +7,7 @@
 using Microsoft.Win32;
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -51,7 +52,7 @@ namespace ColorCorrection.UI
                 (float)RedSlider.Value, (float)GreenSlider.Value, (float)BlueSlider.Value, (bool)AsmBtn.IsChecked, (int)ThreadsSlider.Value);
 
             //display execution time
-            Time.Text = "Correction time: " + executionTime.ElapsedMilliseconds + " ms | "+ executionTime.ElapsedTicks +" ticks";
+            Time.Text = "Correction time: " + executionTime.ElapsedMilliseconds + " ms | " + executionTime.ElapsedTicks + " ticks";
 
             // display corrected image
             DisplayedImg.Source = imgToCorrect.ToBitmapSource();
